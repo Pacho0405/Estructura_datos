@@ -1,2 +1,2 @@
-# Sistema-de-Navegaci-n-Log-stica
+# Sistema de Navegación Logística
 Proyecto estructura de datos y algoritmos
