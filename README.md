@@ -1,5 +1,5 @@
 # Sistema de Navegación Logística
-
+## Francisco Castro y Santiago Avila
 ## Descripción General
 
 Este proyecto es una aplicación web que simula un sistema de navegación para una agencia de logística (similar a UPS), permitiendo la gestión de nodos (puntos de interés, bodegas, sucursales, etc.) y el cálculo de la ruta más corta y óptima entre ellos para optimizar las entregas. El sistema permite agregar, editar, eliminar y conectar nodos, visualizar el grafo y resaltar la ruta óptima calculada usando el algoritmo de Dijkstra. Además, implementa un algoritmo clásico de ordenamiento (Insertion Sort) para mostrar los nodos ordenados alfabéticamente.
@@ -153,12 +153,3 @@ Taller_AC_Mejorado/
 4. **Visualizar la ruta óptima** resaltada en el grafo.
 5. **Ordenar y visualizar los nodos** alfabéticamente.
 6. **Limpiar todo** para reiniciar la simulación.
-
----
-
-## Notas adicionales
-
-- Si deseas agregar nuevas dependencias de Python, simplemente añádelas al archivo `requirements.txt` y vuelve a ejecutar `pip install -r requirements.txt`.
-
-# Sistema de Navegación Logística
-Proyecto estructura de datos y algoritmos
