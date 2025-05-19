@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sistema de Navegación Logística</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Cargo los íconos de Font Awesome para que los botones y títulos tengan dibujitos -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <!-- Cargo fuentes bonitas desde Google Fonts para que todo se vea más moderno -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;600;700&family=Rubik:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Mi archivo de estilos personalizado -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Todo lo de la página va dentro de este contenedor central -->
+    <div class="container">
+      <!-- Encabezado principal con el título y el ícono del camión -->
+      <header class="header">
+        <h1 class="main-title">
+          <i class="fa-solid fa-truck-fast icon-primary"></i>
+          Sistema de Navegación Logística
+        </h1>
+        <p class="subtitle">
+          Optimiza y visualiza rutas logísticas de manera profesional y moderna.
+        </p>
+      </header>
+
+      <!-- Aquí van los mensajes de éxito o error -->
+      <div id="mensaje" class="mensaje"></div>
+
+      <!-- Sección para agregar nodos nuevos -->
+      <section class="card">
+        <h2 class="card-title card-title-primary">
+          <i class="fa-solid fa-plus-circle"></i>
+          Gestión de Nodos
+        </h2>
+        <div class="form-grid">
+          <!-- Nombre del nodo -->
+          <div>
+            <input
+              type="text"
+              placeholder="Ej: Bodega Central"
+              class="input"
+              id="nombre"
+            />
+            <div class="input-explain">
+              Nombre único del nodo (ejemplo: Bodega Central)
+            </div>
+          </div>
+          <!-- Latitud -->
+          <div>
+            <input
+              type="text"
+              placeholder="Ej: 4.6097"
+              class="input"
+              id="lat"
+            />
+            <div class="input-explain">Latitud (ejemplo: 4.6097)</div>
+          </div>
+          <!-- Longitud -->
+          <div>
+            <input
+              type="text"
+              placeholder="Ej: -74.0817"
+              class="input"
+              id="lon"
+            />
+            <div class="input-explain">Longitud (ejemplo: -74.0817)</div>
+          </div>
+          <!-- Botón para agregar el nodo -->
+          <div class="form-btn">
+            <button class="btn-primary" id="btn-agregar-nodo">
+              <i class="fa-solid fa-plus"></i>
+              Agregar Nodo
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección para editar nodos existentes -->
+      <section class="card">
+        <h2 class="card-title card-title-secondary">
+          <i class="fa-solid fa-pen-to-square"></i>
+          Editar Nodo
+        </h2>
+        <div class="form-grid-edit">
+          <!-- Nombre actual del nodo -->
+          <div>
+            <input
+              type="text"
+              placeholder="Nombre actual"
+              class="input"
+              id="nombre_edit"
+            />
+            <div class="input-explain">Nombre actual del nodo</div>
+          </div>
+          <!-- Nuevo nombre (opcional) -->
+          <div>
+            <input
+              type="text"
+              placeholder="Nuevo nombre"
+              class="input"
+              id="nuevo_nombre"
+            />
+            <div class="input-explain">Nuevo nombre (opcional)</div>
+          </div>
+          <!-- Nueva latitud -->
+          <div>
+            <input
+              type="text"
+              placeholder="Nueva latitud"
+              class="input"
+              id="lat_edit"
+            />
+            <div class="input-explain">Nueva latitud</div>
+          </div>
+          <!-- Nueva longitud -->
+          <div>
+            <input
+              type="text"
+              placeholder="Nueva longitud"
+              class="input"
+              id="lon_edit"
+            />
+            <div class="input-explain">Nueva longitud</div>
+          </div>
+          <!-- Botón para editar el nodo -->
+          <div class="form-btn">
+            <button class="btn-primary" id="btn-editar-nodo">
+              <i class="fa-solid fa-pen"></i>
+              Editar Nodo
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección para eliminar nodos -->
+      <section class="card">
+        <h2 class="card-title card-title-danger">
+          <i class="fa-solid fa-trash-can"></i>
+          Eliminar Nodo
+        </h2>
+        <div class="form-grid-delete">
+          <!-- Nombre del nodo a eliminar -->
+          <div>
+            <input
+              type="text"
+              placeholder="Ej: Bodega Central"
+              class="input"
+              id="nombre_del"
+            />
+            <div class="input-explain">Nombre del nodo a eliminar</div>
+          </div>
+          <!-- Botón para eliminar el nodo -->
+          <div class="form-btn">
+            <button class="btn-danger" id="btn-eliminar-nodo">
+              <i class="fa-solid fa-trash"></i>
+              Eliminar Nodo
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección para conectar y desconectar nodos -->
+      <section class="card">
+        <h2 class="card-title card-title-primary">
+          <i class="fa-solid fa-link"></i>
+          Conexión de Nodos
+        </h2>
+        <div class="form-grid-connect">
+          <!-- Primer nodo a conectar -->
+          <div>
+            <input
+              type="text"
+              placeholder="Nodo 1 (ej: Bodega Central)"
+              class="input"
+              id="nodo1"
+            />
+            <div class="input-explain">Nombre del primer nodo</div>
+          </div>
+          <!-- Segundo nodo a conectar -->
+          <div>
+            <input
+              type="text"
+              placeholder="Nodo 2 (ej: Punto Norte)"
+              class="input"
+              id="nodo2"
+            />
+            <div class="input-explain">Nombre del segundo nodo</div>
+          </div>
+          <!-- Botones para conectar y desconectar -->
+          <div class="form-btn-group">
+            <button class="btn-primary" id="btn-conectar">
+              <i class="fa-solid fa-link"></i>
+              Conectar
+            </button>
+            <button class="btn-secondary" id="btn-desconectar">
+              <i class="fa-solid fa-unlink"></i>
+              Desconectar
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección para calcular la ruta más corta entre dos nodos -->
+      <section class="card">
+        <h2 class="card-title card-title-primary">
+          <i class="fa-solid fa-route"></i>
+          Ruta más corta
+        </h2>
+        <div class="form-grid-route">
+          <!-- Nodo de inicio -->
+          <div>
+            <input
+              type="text"
+              placeholder="Inicio (ej: Bodega Central)"
+              class="input"
+              id="inicio"
+            />
+            <div class="input-explain">Nodo de inicio</div>
+          </div>
+          <!-- Nodo de destino -->
+          <div>
+            <input
+              type="text"
+              placeholder="Fin (ej: Punto Norte)"
+              class="input"
+              id="fin"
+            />
+            <div class="input-explain">Nodo de destino</div>
+          </div>
+          <!-- Botón para calcular la ruta -->
+          <div class="form-btn">
+            <button class="btn-primary" id="btn-calcular-ruta">
+              <i class="fa-solid fa-location-arrow"></i>
+              Calcular Ruta
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección para visualizar el grafo y los nodos -->
+      <section class="card">
+        <h2 class="card-title card-title-primary">
+          <i class="fa-solid fa-map-location-dot"></i>
+          Visualización del Grafo
+        </h2>
+        <div id="grafo-contenedor">
+          <!-- Aquí se dibuja el grafo (canvas) -->
+          <canvas id="mapa" width="700" height="400"></canvas>
+          <!-- Lista de nodos con sus coordenadas -->
+          <ul id="lista-nodos"></ul>
+          <div class="mt-4">
+            <!-- Botón para mostrar los nodos ordenados alfabéticamente -->
+            <button class="btn-primary" id="btn-ordenar-nodos">
+              <i class="fa-solid fa-arrow-down-a-z"></i>
+              Mostrar nodos ordenados A-Z
+            </button>
+            <!-- Lista de nodos ordenados -->
+            <ul id="lista-nodos-ordenados" class="mt-2"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Botón para limpiar todos los campos y visualizaciones de la página -->
+      <div style="text-align: right; margin-top: 2rem">
+        <button class="btn-danger" id="btn-limpiar-todo">
+          <i class="fa-solid fa-broom"></i>
+          Limpiar todo
+        </button>
+      </div>
+    </div>
+
+    <!-- Aquí cargo el archivo JavaScript principal -->
+    <script src="app.js"></script>
+    <script>
+      // Cuando la página termina de cargar, asigno las funciones a los botones
+      window.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("btn-agregar-nodo").onclick = agregarNodo;
+        document.getElementById("btn-editar-nodo").onclick = editarNodo;
+        document.getElementById("btn-eliminar-nodo").onclick = eliminarNodo;
+        document.getElementById("btn-conectar").onclick = conectarNodos;
+        document.getElementById("btn-desconectar").onclick = desconectarNodos;
+        document.getElementById("btn-calcular-ruta").onclick = calcularRuta;
+        document.getElementById("btn-ordenar-nodos").onclick =
+          mostrarNodosOrdenados;
+        document.getElementById("btn-limpiar-todo").onclick = limpiarTodo;
+      });
+    </script>
+  </body>
+</html>

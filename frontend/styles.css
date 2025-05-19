@@ -1,0 +1,277 @@
+body,
+html {
+  /* El fondo es gris claro y usamos fuentes modernas y legibles */
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #f3f4f6;
+  font-family: "Inter", "Poppins", "Rubik", Arial, sans-serif;
+  color: #18181b;
+  letter-spacing: 0.01em;
+}
+
+/* El contenedor principal centra todo y le da un ancho máximo para que no se vea gigante en pantallas grandes */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+/* ----- CABECERA Y TÍTULOS ----- */
+header.header {
+  margin-bottom: 32px; /* Espacio debajo del encabezado */
+}
+
+.main-title {
+  /* Título grande y con ícono */
+  font-size: 2.2rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #18181b;
+  margin-bottom: 0.5rem;
+}
+
+.icon-primary {
+  /* El ícono del camión es azul violeta y grande */
+  color: #6366f1;
+  font-size: 2rem;
+}
+
+.subtitle {
+  /* Subtítulo debajo del título principal */
+  font-size: 1.15rem;
+  color: #6366f1;
+  font-weight: 600;
+}
+
+/* ----- TARJETAS (SECCIONES) ----- */
+.card {
+  /* Cada sección está en una "tarjeta" blanca con bordes redondeados y sombra */
+  background: #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 24px 0 #e0e7ef44;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  /* Animación suave al aparecer */
+  animation: fadeInUp 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+/* Animación para que las tarjetas aparezcan deslizándose hacia arriba */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Títulos de las tarjetas con diferentes colores según el tipo */
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.01em;
+}
+.card-title-primary {
+  color: #6366f1; /* Azul violeta */
+}
+.card-title-secondary {
+  color: #a5b4fc; /* Azul más claro */
+}
+.card-title-danger {
+  color: #ef4444; /* Rojo para acciones peligrosas */
+}
+
+/* ----- FORMULARIOS Y GRIDS ----- */
+/* Usamos "grid" para organizar los formularios en columnas */
+.form-grid,
+.form-grid-edit,
+.form-grid-connect,
+.form-grid-route,
+.form-grid-delete {
+  display: grid;
+  gap: 1.5rem; /* Espacio entre columnas */
+}
+
+/* Cada tipo de formulario tiene diferente cantidad de columnas */
+.form-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+.form-grid-edit {
+  grid-template-columns: repeat(5, 1fr);
+}
+.form-grid-connect {
+  grid-template-columns: repeat(3, 1fr);
+}
+.form-grid-route {
+  grid-template-columns: repeat(3, 1fr);
+}
+.form-grid-delete {
+  grid-template-columns: 4fr 1fr;
+}
+
+/* Cuando la pantalla es pequeña (celular/tablet), todo se apila en una sola columna */
+@media (max-width: 900px) {
+  .form-grid,
+  .form-grid-edit,
+  .form-grid-connect,
+  .form-grid-route,
+  .form-grid-delete {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ----- INPUTS Y TEXTOS EXPLICATIVOS ----- */
+.input {
+  /* Inputs grandes, redondeados y con sombra interna */
+  padding: 0.75rem 1.25rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 0.75rem;
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  background: #fff;
+  color: #18181b;
+  box-shadow: 0 1px 4px 0 #e0e7ef inset;
+  transition: border-color 0.22s, box-shadow 0.22s, background 0.22s;
+}
+
+/* Cuando haces clic en un input, cambia el borde y el fondo para que se note */
+.input:focus {
+  border-color: #6366f1;
+  background: #f8fafc;
+  box-shadow: 0 0 0 2px #6366f133;
+  outline: none;
+}
+
+/* Texto pequeño debajo de los inputs para explicar qué poner */
+.input-explain {
+  font-size: 0.85rem;
+  color: #6366f1;
+  margin-top: 2px;
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+/* ----- BOTONES ----- */
+/* Botón principal: para acciones importantes como agregar o calcular */
+.btn-primary {
+  background: linear-gradient(90deg, #6366f1 60%, #a5b4fc 100%);
+  color: #fff;
+  padding: 0.7rem 1.3rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px 0 #6366f122;
+  transition: background 0.18s, transform 0.18s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+/* Efecto al pasar el mouse o enfocar */
+.btn-primary:hover,
+.btn-primary:focus {
+  background: linear-gradient(90deg, #4f46e5 60%, #818cf8 100%);
+  transform: scale(1.05);
+}
+
+/* Botón secundario: para acciones menos importantes */
+.btn-secondary {
+  background: #6b7280;
+  color: #fff;
+  padding: 0.7rem 1.3rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px 0 #a5b4fc22;
+  transition: background 0.18s, transform 0.18s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background: #4b5563;
+  transform: scale(1.05);
+}
+
+/* Botón peligroso: para eliminar o limpiar */
+.btn-danger {
+  background: #ef4444;
+  color: #fff;
+  padding: 0.7rem 1.3rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px 0 #ef444422;
+  transition: background 0.18s, transform 0.18s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.btn-danger:hover,
+.btn-danger:focus {
+  background: #dc2626;
+  transform: scale(1.05);
+}
+
+/* Para que los botones de un formulario estén juntos y con espacio entre ellos */
+.form-btn,
+.form-btn-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ----- MENSAJES Y VISUALIZACIÓN ----- */
+/* Mensaje de éxito o error arriba de los formularios */
+#mensaje {
+  min-height: 2.5rem;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Contenedor del grafo: borde, fondo claro y centrado */
+#grafo-contenedor {
+  padding: 1.5rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 1rem;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+/* Canvas donde se dibuja el grafo */
+#mapa {
+  border-radius: 1rem;
+  background: #f8fafc;
+  border: 1.5px solid #e5e7eb;
+  width: 100%;
+  max-width: 700px;
+  height: 400px;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/* Si la pantalla es pequeña, el canvas se hace más chico */
+@media (max-width: 900px) {
+  #mapa {
+    max-width: 100%;
+    height: 260px;
+  }
+}
