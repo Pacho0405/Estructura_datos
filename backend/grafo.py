@@ -39,7 +39,7 @@ class Grafo:
             return False
         del self.nodos[nombre]
         del self.adyacencia[nombre]
-        # Quito este nodo de la lista de vecinos de los demás
+        # Quitamos este nodo de la lista de vecinos de los demás
         for vecinos in self.adyacencia.values():
             vecinos.pop(nombre, None)
         return True
@@ -49,9 +49,9 @@ class Grafo:
         if nombre not in self.nodos:
             return False
         if nuevo_nombre != nombre and nuevo_nombre in self.nodos:
-            return False  # No puedo poner un nombre que ya existe
+            return False  # No se puede poner un nombre que ya existe
         self.nodos[nuevo_nombre] = Nodo(nuevo_nombre, lat, lon)
-        # Cambio las conexiones al nuevo nombre
+        # Cambiamos las conexiones al nuevo nombre
         self.adyacencia[nuevo_nombre] = self.adyacencia.pop(nombre)
         for vecinos in self.adyacencia.values():
             if nombre in vecinos:
@@ -90,7 +90,7 @@ class Grafo:
         nodos = set(self.nodos.keys())
 
         while nodos:
-            # Busco el nodo no visitado con menor distancia conocida
+            # Buscamos el nodo no visitado con menor distancia conocida
             actual = min(nodos, key=lambda n: dist[n])
             nodos.remove(actual)
             if dist[actual] == float('inf'):
