@@ -7,13 +7,13 @@ class Nodo:
         self.lat = lat        # Latitud (float)
         self.lon = lon        # Longitud (float)
 
-# Esta clase es el grafo completo: guarda todos los nodos y las conexiones entre ellos
+# Esta clase es el grafo completo que guarda todos los nodos y las conexiones entre ellos
 class Grafo:
     def __init__(self):
         self.nodos = {}       # Diccionario: nombre -> Nodo
         self.adyacencia = {}  # Diccionario: nombre -> {nombre_vecino: peso}
 
-    # Devuelvo una lista de diccionarios con la info de cada nodo y sus vecinos (para el frontend)
+    # Devolvemos una lista de diccionarios con la info de cada nodo y sus vecinos (para el frontend)
     def nodos_dict(self):
         return [
             {
@@ -25,7 +25,7 @@ class Grafo:
             for nombre, n in self.nodos.items()
         ]
 
-    # Agrego un nodo nuevo al grafo (si no existe ya)
+    # Agregamos un nodo nuevo al grafo (si no existe ya)
     def agregar_nodo(self, nombre, lat, lon):
         if nombre in self.nodos:
             return False  # Ya existe un nodo con ese nombre
@@ -33,7 +33,7 @@ class Grafo:
         self.adyacencia[nombre] = {}  # Inicializo su lista de vecinos
         return True
 
-    # Elimino un nodo y todas sus conexiones
+    # Eliminamos un nodo y todas sus conexiones
     def eliminar_nodo(self, nombre):
         if nombre not in self.nodos:
             return False
@@ -44,7 +44,7 @@ class Grafo:
             vecinos.pop(nombre, None)
         return True
 
-    # Edito el nombre y/o las coordenadas de un nodo
+    # Editamos el nombre y/o las coordenadas de un nodo
     def editar_nodo(self, nombre, nuevo_nombre, lat, lon):
         if nombre not in self.nodos:
             return False
@@ -60,7 +60,7 @@ class Grafo:
             del self.nodos[nombre]
         return True
 
-    # Conecto dos nodos (arista bidireccional) y calculo el peso según la distancia
+    # Conectamos dos nodos (arista bidireccional) y calculo el peso según la distancia
     def conectar_nodos(self, nombre1, nombre2):
         if nombre1 in self.nodos and nombre2 in self.nodos and nombre1 != nombre2:
             peso = self.distancia(self.nodos[nombre1], self.nodos[nombre2])
@@ -69,14 +69,14 @@ class Grafo:
             return True
         return False
 
-    # Quito la conexión entre dos nodos (si existe)
+    # Quitamos la conexión entre dos nodos (si existe)
     def desconectar_nodos(self, nombre1, nombre2):
         if nombre1 in self.adyacencia and nombre2 in self.adyacencia[nombre1]:
             del self.adyacencia[nombre1][nombre2]
         if nombre2 in self.adyacencia and nombre1 in self.adyacencia[nombre2]:
             del self.adyacencia[nombre2][nombre1]
 
-    # Calculo la distancia euclidiana entre dos nodos (para usar como peso de la arista)
+    # Calculamos la distancia euclidiana entre dos nodos (para usar como peso de la arista)
     def distancia(self, nodo1, nodo2):
         return math.sqrt((nodo1.lat - nodo2.lat)**2 + (nodo1.lon - nodo2.lon)**2)
 
@@ -101,7 +101,7 @@ class Grafo:
                     dist[vecino] = alt
                     prev[vecino] = actual
 
-        # Reconstruyo el camino óptimo desde el final hasta el inicio
+        # Reconstruimos el camino óptimo desde el final hasta el inicio
         camino = []
         actual = fin
         while actual:
