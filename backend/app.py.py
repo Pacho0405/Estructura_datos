@@ -1,13 +1,13 @@
-# Uso Flask para crear el servidor web y Flask-CORS para permitir peticiones desde el frontend (JavaScript).
+# Usamos Flask para crear el servidor web y Flask-CORS para permitir peticiones desde el frontend (JavaScript).
 # Todo lo que el frontend necesita (agregar, editar, eliminar, conectar nodos, etc.) pasa por aquí.
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from grafo import Grafo  # Importo mi clase Grafo que tiene toda la lógica
+from grafo import Grafo  # Importamos la clase Grafo que tiene toda la lógica
 
 app = Flask(__name__)
-CORS(app)  # Permito peticiones desde cualquier origen (útil para desarrollo)
-grafo = Grafo()  # Creo una instancia de mi grafo
+CORS(app)  # Permitimos peticiones desde cualquier origen que es útil para el desarrollo
+grafo = Grafo()  # Creamos una instancia de mi grafo
 
 # Ruta para obtener la lista de nodos (GET)
 @app.route('/nodos', methods=['GET'])
@@ -55,6 +55,6 @@ def ruta():
     camino, distancia = grafo.dijkstra(data['inicio'], data['fin'])
     return jsonify({'camino': camino, 'distancia': distancia})
 
-# Esto hace que el servidor se inicie si corro este archivo directamente
+# Esto hace que el servidor se inicie si se corre este archivo directamente
 if __name__ == '__main__':
     app.run(debug=True)
