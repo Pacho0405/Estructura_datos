@@ -1,6 +1,6 @@
 const API = "http://localhost:5000"; // La URL de mi backend (el servidor en Python)
 
-let rutaOptima = []; // Aquí guardo la última ruta óptima que se calculó, para poder dibujarla
+let rutaOptima = []; // Aquí se guarda la última ruta óptima que se calculó, para poder dibujarla
 
 // Esta función muestra mensajes de éxito o error arriba de la página
 function mostrarMensaje(texto, tipo = "success") {
@@ -18,20 +18,20 @@ function mostrarMensaje(texto, tipo = "success") {
   }, 3000);
 }
 
-// Limpio los campos del formulario de agregar nodo después de agregar uno
+// Limpiamos los campos del formulario de agregar nodo después de agregar uno
 function limpiarCamposAgregarNodo() {
   document.getElementById("nombre").value = "";
   document.getElementById("lat").value = "";
   document.getElementById("lon").value = "";
 }
 
-// Pido la lista de nodos al backend (me devuelve un array de objetos)
+// Pedimos la lista de nodos al backend (me devuelve un array de objetos)
 async function fetchNodos() {
   const res = await fetch(API + "/nodos");
   return await res.json();
 }
 
-// Cuando agrego un nodo, tomo los valores del formulario y los mando al backend
+// Cuando agregamos un nodo, tomamos los valores del formulario y los mando al backend
 async function agregarNodo() {
   const nombre = document.getElementById("nombre").value;
   const lat = document.getElementById("lat").value;
@@ -59,7 +59,7 @@ async function agregarNodo() {
   render(); // Actualizo la visualización
 }
 
-// Para editar un nodo, tomo los valores del formulario y los mando al backend
+// Para editar un nodo, tomamos los valores del formulario y los mando al backend
 async function editarNodo() {
   const nombre = document.getElementById("nombre_edit").value;
   const nuevo_nombre = document.getElementById("nuevo_nombre").value;
@@ -86,7 +86,7 @@ async function editarNodo() {
   render();
 }
 
-// Para eliminar un nodo, solo necesito el nombre
+// Para eliminar un nodo necesitamos el nombre
 async function eliminarNodo() {
   const nombre = document.getElementById("nombre_del").value;
   if (!nombre) return mostrarMensaje("Indica el nombre.", "error");
@@ -103,7 +103,7 @@ async function eliminarNodo() {
   render();
 }
 
-// Para conectar dos nodos, tomo los nombres y los mando al backend
+// Para conectar dos nodos tomamos los nombres y los mandamos al backend
 async function conectarNodos() {
   const nodo1 = document.getElementById("nodo1").value;
   const nodo2 = document.getElementById("nodo2").value;
@@ -125,7 +125,7 @@ async function conectarNodos() {
   render();
 }
 
-// Para desconectar dos nodos, igual que conectar pero llamo a otra ruta
+// Para desconectar dos nodos, igual que conectar pero llamamos a otra ruta
 async function desconectarNodos() {
   const nodo1 = document.getElementById("nodo1").value;
   const nodo2 = document.getElementById("nodo2").value;
@@ -144,7 +144,7 @@ async function desconectarNodos() {
   render();
 }
 
-// Para calcular la ruta más corta, mando los nombres de inicio y fin al backend
+// Para calcular la ruta más corta, mandamos los nombres de inicio y fin al backend
 async function calcularRuta() {
   const inicio = document.getElementById("inicio").value;
   const fin = document.getElementById("fin").value;
@@ -182,7 +182,7 @@ async function render() {
   const ctx = canvas.getContext("2d");
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Escalo las coordenadas para que todo quepa bien en el canvas
+  // Se escalan las coordenadas para que todo quepa bien en el canvas
   if (nodos.length === 0) return;
   const lats = nodos.map((n) => n.lat);
   const lons = nodos.map((n) => n.lon);
@@ -196,7 +196,7 @@ async function render() {
     return [x, y];
   }
 
-  // Dibujo las conexiones normales (aristas)
+  // Dibujamos las conexiones normales (aristas)
   nodos.forEach((nodo) => {
     const [x1, y1] = escalar(nodo.lat, nodo.lon);
     if (nodo.vecinos) {
@@ -217,7 +217,7 @@ async function render() {
     }
   });
 
-  // Si hay una ruta óptima, la dibujo más gruesa y de color azul violeta
+  // Si hay una ruta óptima, la dibujamos más gruesa y de color azul violeta
   if (rutaOptima && rutaOptima.length > 1) {
     ctx.save();
     ctx.strokeStyle = "#6366f1";
@@ -239,7 +239,7 @@ async function render() {
     ctx.restore();
   }
 
-  // Dibujo los nodos como círculos naranjas y les pongo el nombre arriba
+  // Dibujamos los nodos como círculos naranjas y les pusimos el nombre arriba
   nodos.forEach((nodo) => {
     const [x, y] = escalar(nodo.lat, nodo.lon);
     ctx.beginPath();
@@ -254,7 +254,7 @@ async function render() {
     ctx.fillText(nodo.nombre, x - 10, y - 15);
   });
 
-  // Actualizo la lista de nodos con sus coordenadas
+  // Actualizamos la lista de nodos con sus coordenadas
   const ul = document.getElementById("lista-nodos");
   ul.innerHTML = "";
   nodos.forEach((n) => {
@@ -264,7 +264,7 @@ async function render() {
   });
 }
 
-// Este es el clásico Insertion Sort, pero hecho a mano para ordenar los nombres de los nodos
+// Aqui hacemos el Insertion Sort para ordenar los nombres de los nodos
 function insertionSort(arr) {
   for (let i = 1; i < arr.length; i++) {
     let key = arr[i];
@@ -278,7 +278,7 @@ function insertionSort(arr) {
   return arr;
 }
 
-// Cuando quiero ver los nodos ordenados alfabéticamente, uso esta función
+// Cuando se quiera ver los nodos ordenados alfabeticamenten se usa esta función
 async function mostrarNodosOrdenados() {
   const nodos = await fetchNodos();
   const nombres = nodos.map((n) => n.nombre);
@@ -292,7 +292,7 @@ async function mostrarNodosOrdenados() {
   });
 }
 
-// Esta función limpia todos los campos, mensajes, listas y el canvas (como si reiniciara la página)
+// Esta función limpia todos los campos, mensajes, listas y el canvas (como si reiniciaramos la página)
 function limpiarTodo() {
   // Limpio todos los inputs
   document.querySelectorAll("input").forEach((input) => (input.value = ""));
@@ -312,7 +312,7 @@ function limpiarTodo() {
   rutaOptima = [];
 }
 
-// Cuando la página termina de cargar, asigno las funciones a los botones y dibujo el grafo inicial
+// Cuando la página termina de cargar, asignamos las funciones a los botones y dibujamos el grafo inicial
 window.addEventListener("DOMContentLoaded", () => {
   render();
   document.getElementById("btn-agregar-nodo").onclick = agregarNodo;
