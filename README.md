@@ -102,17 +102,18 @@ Taller_AC_Mejorado/
 
 ### 2. **Instalación del Backend**
 
-1. Ve a la carpeta `Taller_AC/backend`.
-2. Instala las dependencias necesarias ejecutando:
+1.Primero se deben descargar todas las carpetas que estan en el repositorio
+2.Abre un terminal y con el con el comando "cd" ve a la carpeta `Taller_AC/backend`.
+3. Instala las dependencias necesarias ejecutando:
    ```bash
    pip install -r requirements.txt
    ```
    Esto instalará automáticamente Flask y Flask-CORS, que son necesarios para el backend.
-3. Ejecuta el servidor:
+4. Ejecuta el servidor:
    ```bash
    python app.py
    ```
-   El backend quedará escuchando en `http://localhost:5000`.
+   Luego de ejecutar este comando ya quedó abierto el servidor.
 
 ### 3. **Ejecución del Frontend**
 
