@@ -103,7 +103,9 @@ Taller_AC_Mejorado/
 ### 2. **Instalación del Backend**
 
 1.Primero se deben descargar todas las carpetas que estan en el repositorio
+
 2.Abre un terminal y con el con el comando "cd" ve a la carpeta `Taller_AC/backend`.
+
 3. Instala las dependencias necesarias ejecutando:
    ```bash
    pip install -r requirements.txt
